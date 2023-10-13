@@ -1,47 +1,37 @@
 #include <stdio.h>
 int main()
 {
-	int y,m,d;//´ú±íÄê¡¢ÔÂ¡¢ÈÕ 
-	int i,j,w;
-	printf("ÇëÊäÈëÈÕÆÚ:XXÄêXXÔÂXXÈÕ\n");
+	int y,m,d;//ä»£è¡¨å¹´ã€æœˆã€æ—¥ 
+	int i,j,w,s;
+	printf("è¯·è¾“å…¥æ—¥æœŸ:XXå¹´XXæœˆXXæ—¥\n");
 	scanf ("%d %d %d",&y,&m,&d);
 	int day[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
-	if (m<1||m>12) {
-        printf("ÊäÈëµÄÔÂ·İÓĞÎó\n");
-        return 0;
-    }
-    if (d<1||d>day[m]) {
-        printf("ÊäÈëµÄÈÕÆÚÓĞÎó\n");
-        return 0;
-    }
 	if (y%400==0||y%100!=0&&y%4==0){
 		day[2]=29;
 	}
 	if (m==1||m==2){
-		y--;
 		m+=12;
+		y--;
 	} 
-	w=(d+2*m+3*(m+1)/5+y+y/4-y/100+y/400)%7;//wµÄÖµÎª0-6£¬¶ÔÓ¦ĞÇÆÚÈÕµ½ĞÇÆÚÒ» 
-	if (m==1||m==2){
-		y++;
+	w=(d+2*m+3*(m+1)/5+y+y/4-y/100+y/400)%7;//wçš„å€¼ä¸º0-6ï¼Œå¯¹åº”æ˜ŸæœŸæ—¥åˆ°æ˜ŸæœŸä¸€
+	if (m==13||m==14){
 		m-=12;
-	}
-	printf("   Sun   Mon   Tue   Wed   Thu   Fri   Sat\n"); 
+		y++;
+	} 
+	printf("   Sun   Mon   Tue   Wen   Thu   Fri   Sat\n"); 
 	for (i=0;i<w;i++){
-		printf("%6s","");//·ÀÖ¹³öÏÖ»ìÂÒµÄ×Ö·û 
+		printf("%6s","");//é˜²æ­¢å‡ºç°æ··ä¹±çš„å­—ç¬¦  
 	}
-	for (i=1,j=w;i<=day[m];i++,j++){
+	for (i=1,j=w;i<=day[m];i++){
 		if (i!=d){
 			printf("%6d",i);
 		} else {
 			printf("%5d*",i);
 		}
-		if ((j+1)%7==0){
+		j++;
+		if (j%7==0){
 			printf("\n");
 		}
-	}	
+	}
 	return 0;
 }
-
-
-
